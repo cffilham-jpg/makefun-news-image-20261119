@@ -1,5 +1,11 @@
 # A Daily Atlas — 19 November 2026
 
+[![make.fun · news-image-20261119](https://make.fun/badge/news-image-20261119.svg)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+[![rank](https://make.fun/badge/news-image-20261119/cffilham-jpg/makefun-news-image-20261119/rank.svg)](https://make.fun/bounty/news-image-20261119/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+[![reward](https://make.fun/badge/news-image-20261119/cffilham-jpg/makefun-news-image-20261119/reward.svg)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
+
+[Bounty page](https://make.fun/bounty/news-image-20261119)
+
 An original square infographic for make.fun competition `news-image-20261119`.
 A dotted, schematic world map connects six numbered locations to six illustrated
 news cards. The date is the organizing idea: these are events occurring, or
