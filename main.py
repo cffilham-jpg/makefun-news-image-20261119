@@ -1,31 +1,28 @@
-"""Emit the pre-rendered make.fun entry using only the standard library."""
+"""Deliver the bundled news atlas without rendering or network access."""
 import os
 import shutil
 import sys
 
 
 def main():
-    source = os.path.join(os.path.dirname(os.path.abspath(__file__)), "entry.png")
-    output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
-    size = os.path.getsize(source)
-    if not 0 < size <= 1024 * 1024:
-        raise ValueError("Source image must be nonempty and at most 1 MiB")
-    with open(source, "rb") as image:
-        if image.read(8) != b"\x89PNG\r\n\x1a\n":
-            raise ValueError("Source image is not a PNG")
-    os.makedirs(output_dir, exist_ok=True)
-    destination = os.path.join(output_dir, "entry.png")
-    if not (os.path.exists(destination) and os.path.samefile(source, destination)):
+    source = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'entry.png')
+    source_size = os.path.getsize(source)
+    if not 0 < source_size <= 1024 * 1024:
+        raise OSError('The bundled image is empty or exceeds 1 MiB')
+    destination_dir = os.environ.get('MAKEFUN_OUTPUT_DIR', '/output')
+    os.makedirs(destination_dir, exist_ok=True)
+    destination = os.path.join(destination_dir, 'entry.png')
+    if os.path.realpath(source) != os.path.realpath(destination):
         shutil.copyfile(source, destination)
-    if size != os.path.getsize(destination):
-        raise OSError("Output size does not match source size")
-    print("Wrote " + destination + " (" + str(size) + " bytes)")
+    if source_size != os.path.getsize(destination):
+        raise OSError('The copied image has an unexpected size')
+    print('Image written to ' + destination + ' (' + str(source_size) + ' bytes)')
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         sys.exit(main())
-    except (OSError, ValueError) as error:
-        print("Entry output failed: " + str(error), file=sys.stderr)
+    except OSError as error:
+        print('Image delivery failed: ' + str(error), file=sys.stderr)
         sys.exit(1)
